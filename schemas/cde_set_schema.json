@@ -1,0 +1,455 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Wrapper",
+    "definitions": {
+        "Wrapper": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "$schema": {
+                    "type": "string"
+                },
+                "data_element_set": {
+                    "$ref": "#/definitions/DataElementSet"
+                }
+            },
+            "required": [
+                "$schema",
+                "data_element_set"
+            ],
+            "title": "Wrapper"
+        },
+        "DataElementSet": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "version": {
+                    "$ref": "#/definitions/Version"
+                },
+                "references": {
+                    "$ref": "#/definitions/References"
+                },
+                "index_codes": {
+                    "$ref": "#/definitions/IndexCodes"
+                },
+                "modality": {
+                    "$ref": "#/definitions/Modality"
+                },
+                "authors": {
+                    "$ref": "#/definitions/Authors"
+                },
+                "specialty": {
+                    "$ref": "#/definitions/Specialty"
+                },
+                "elements": {
+                    "$ref": "#/definitions/Elements"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "description",
+                "version",
+                "elements",
+                "specialty"
+            ],
+            "title": "DataElementSet"
+        },
+        "Authors": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "person": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Person"
+                    }
+                },
+                "organization": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Organization"
+                    }
+                }
+            },
+            "oneOf": [
+                {
+                    "required": [
+                        "person"
+                    ]
+                },
+                {
+                    "required": [
+                        "organization"
+                    ]
+                }
+            ],
+            "title": "Authors"
+        },
+        "Person": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "orcid_id": {
+                    "type": "string"
+                },
+                "twitter_handle": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "role": {
+                    "type": "string",
+                    "enum": ["author", "editor", "translator", "reviewer", "contributor"]
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Person"
+        },
+        "Elements": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "element": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Element"
+                    }
+                }
+            },
+            "required": [
+                "element"
+            ],
+            "title": "Elements"
+        },
+        "Element": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "parent_set": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "definition": {
+                    "type": "string"
+                },
+                "version": {
+                    "$ref": "#/definitions/Version"
+                },
+                "index_codes": {
+                    "$ref": "#/definitions/IndexCodes"
+                },
+                "specialty": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Organization"
+                    }
+                },
+                "integer_values": {
+                    "$ref": "#/definitions/IntegerValues"
+                },
+                "value_set": {
+                    "$ref": "#/definitions/ValueSet"
+                }
+            },
+            "required": [
+                "definition",
+                "id",
+                "name",
+                "parent_set",
+                "version"
+            ],
+            "title": "Element"
+        },
+        "IndexCode": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "system": {
+                    "type": "string",
+                    "enum": ["RADLEX", "SNOMEDCT", "LOINC"]
+                },
+                "code": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "display": {
+                    "type": "string"
+                }
+            }
+        },
+        "IndexCodes": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "index_code": {
+                    "$ref": "#/definitions/IndexCode"
+                }
+            },
+            "required": [
+                "index_code"
+            ],
+            "title": "IndexCodes"
+        },
+        "IntegerValues": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "min": {
+                    "type": "string",
+                    "format": "integer"
+                },
+                "max": {
+                    "type": "string",
+                    "format": "integer"
+                },
+                "step": {
+                    "type": "string",
+                    "format": "integer"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "max",
+                "min",
+                "step",
+                "unit"
+            ],
+            "title": "IntegerValues"
+        },
+        "Organization": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "abbreviation": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string",
+                    "enum": ["author", "sponsor", "translator", "reviewer", "contributor"]
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Organization"
+        },
+        "ValueSet": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "min_cardinality": {
+                    "type": "string",
+                    "format": "integer"
+                },
+                "max_cardinality": {
+                    "type": "string",
+                    "format": "integer"
+                },
+                "value": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Value"
+                    }
+                }
+            },
+            "required": [
+                "max_cardinality",
+                "min_cardinality",
+                "value"
+            ],
+            "title": "ValueSet"
+        },
+        "Value": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "value": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "index_codes": {
+                    "$ref": "#/definitions/ValueIndexCodes"
+                }
+            },
+            "required": [
+                "index_codes",
+                "name",
+                "value"
+            ],
+            "title": "Value"
+        },
+        "ValueIndexCodes": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "index_code": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Modality"
+                    }
+                }
+            },
+            "required": [
+                "index_code"
+            ],
+            "title": "ValueIndexCodes"
+        },
+        "Modality": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "system": {
+                    "type": "string",
+                    "enum": ["RADLEX"]
+                },
+                "code": {
+                    "type": "string",
+                    "enum": ["CT", "FL", "MR", "NM", "PET", "US", "XR"]
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^http://radlex.org/RID/RID103(21|61|12|30|37|26|45)$"
+                },
+                "name": {
+                    "type": "string",
+                    "enum": ["Computed Tomography", 
+                        "Fluoroscopy", 
+                        "Magnetic Resonance Imaging", 
+                        "Nuclear Medicine", 
+                        "Positron Emission Tomography", 
+                        "Ultrasound", 
+                        "Projection Radiography"]
+                }
+            },
+            "required": [
+                "code",
+                "system",
+                "url",
+                "name"
+            ],
+            "title": "Modality"
+        },
+        "Specialty": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "abbreviation": {
+                    "type": "string",
+                    "enum": ["AB", "BR", "CA", "CH", "ER", "GI", "GU", "HN", "IR", "MI", "MK", "NR", "OB", "OI", "OT", "PD", "QI", "RS", "VI"]
+                }
+            },
+            "required": [
+                "name", 
+                "abbreviation"
+            ],
+            "title": "Specialty"
+        },
+        "Version": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": ["proposed", "published", "retired"]
+                }
+            },
+            "required": [
+                "date",
+                "name",
+                "status"
+            ],
+            "title": "Version"
+        },
+        "References": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "reference": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    }
+                }
+            },
+            "required": [
+                "reference"
+            ],
+            "title": "References"
+        },
+        "Reference": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "citation": {
+                    "type": "string"
+                },
+                "doi_url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "pubmed_id": {
+                    "type": "string",
+                    "format": "integer"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "required": [
+                "citation"
+            ],
+            "title": "Reference"
+        }
+    }
+}

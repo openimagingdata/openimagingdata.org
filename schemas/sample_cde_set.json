@@ -1,0 +1,31 @@
+{
+    "$schema": "./cde_set_schema.json",
+    "data_element_set": {
+        "id": "",
+        "name": "Liver Lesion",
+        "description": "Incidental liver lesion",
+        "version": {
+            "date": "2020-01-01",
+            "name": "1.0.0",
+            "status": "proposed"
+        },
+        "authors": {
+            "person": [
+                {
+                    "name": "John Doe",
+                    "orcid": "0000-0000-0000-0000",
+                    "affiliation": "University of California, San Francisco"
+                }
+            ]
+        },
+        "specialty": {
+            "name": "Abdominal Radiology",
+            "abbreviation": "AB"
+        },
+        "elements": {
+            "element": [
+
+            ]
+        }
+    }
+}
