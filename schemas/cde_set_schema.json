@@ -24,13 +24,15 @@
             "additionalProperties": false,
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^RDES\\d+"
                 },
                 "name": {
                     "type": "string"
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "plain text, or XHTML div are acceptable"
                 },
                 "version": {
                     "$ref": "#/definitions/Version"
@@ -41,8 +43,17 @@
                 "index_codes": {
                     "$ref": "#/definitions/IndexCodes"
                 },
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Image"
+                    }
+                },
                 "modality": {
                     "$ref": "#/definitions/Modality"
+                },
+                "biologicalSex": {
+                    "$ref": "#/definitions/BiologicalSex"
                 },
                 "authors": {
                     "$ref": "#/definitions/Authors"
@@ -63,6 +74,45 @@
                 "specialty"
             ],
             "title": "DataElementSet"
+        },
+        "Image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "height": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0
+                },
+                "width": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0
+                },
+                "caption": {
+                    "type": "string"
+                },
+                "rights": {
+                    "type": "string"
+                },
+                "authors": {
+                    "$ref": "#/definitions/Authors"
+                },
+                "references": {
+                    "$ref": "#/definitions/References"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "title": "Image"
+        },
+        },
+        "BiologicalSex": {
+            "type": "string",
+            "enum": ["M", "F"]
         },
         "Authors": {
             "type": "object",
