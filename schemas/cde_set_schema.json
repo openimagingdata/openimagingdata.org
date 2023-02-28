@@ -37,29 +37,36 @@
                 "version": {
                     "$ref": "#/definitions/Version"
                 },
-                "references": {
-                    "$ref": "#/definitions/References"
+                "url": {
+                    "type": "string",
+                    "format": "uri"
                 },
                 "index_codes": {
-                    "$ref": "#/definitions/IndexCodes"
-                },
-                "images": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Image"
+                        "$ref": "#/definitions/IndexCode"
                     }
                 },
-                "modality": {
-                    "$ref": "#/definitions/Modality"
-                },
-                "biologicalSex": {
-                    "$ref": "#/definitions/BiologicalSex"
+                "body_parts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BodyPart"
+                    }
                 },
                 "authors": {
                     "$ref": "#/definitions/Authors"
                 },
+                "history": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    }
+                },
                 "specialty": {
-                    "$ref": "#/definitions/Specialty"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Specialty"
+                    }
                 },
                 "elements": {
                     "$ref": "#/definitions/Elements"
@@ -71,9 +78,24 @@
                 "description",
                 "version",
                 "elements",
+                "history",
+                "index_codes",
                 "specialty"
             ],
             "title": "DataElementSet"
+        },
+        "Event": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "status": {
+                    "$ref": "#/definitions/Status"
+                }
+            }
         },
         "Image": {
             "type": "object",
@@ -131,18 +153,6 @@
                     }
                 }
             },
-            "oneOf": [
-                {
-                    "required": [
-                        "person"
-                    ]
-                },
-                {
-                    "required": [
-                        "organization"
-                    ]
-                }
-            ],
             "title": "Authors"
         },
         "Person": {
@@ -232,6 +242,21 @@
             ],
             "title": "Element"
         },
+        "BodyPart": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "index_codes": {
+                    "$ref": "#/definitions/IndexCode"
+                }
+            }
+            "required": [
+                "name"
+            ]
+        },
         "IndexCode": {
             "type": "object",
             "additionalProperties": false,
@@ -243,7 +268,7 @@
                 "code": {
                     "type": "string"
                 },
-                "url": {
+                "href": {
                     "type": "string",
                     "format": "uri"
                 },
@@ -251,19 +276,6 @@
                     "type": "string"
                 }
             }
-        },
-        "IndexCodes": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "index_code": {
-                    "$ref": "#/definitions/IndexCode"
-                }
-            },
-            "required": [
-                "index_code"
-            ],
-            "title": "IndexCodes"
         },
         "IntegerValues": {
             "type": "object",
@@ -449,8 +461,7 @@
                     "format": "date"
                 },
                 "status": {
-                    "type": "string",
-                    "enum": ["proposed", "published", "retired"]
+                    "$ref": "#/definitions/Status"
                 }
             },
             "required": [
@@ -459,6 +470,10 @@
                 "status"
             ],
             "title": "Version"
+        },
+        "Status": {
+            "type": "string",
+            "enum": ["proposed", "published", "retired"]
         },
         "References": {
             "type": "object",

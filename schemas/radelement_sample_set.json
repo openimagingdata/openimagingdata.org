@@ -1,66 +1,695 @@
-{
-  "id": "RDES45",
-  "name": "Radial Head Dislocation",
-  "description": "This module describes the common data elements for Radial Head Dislocation use case.",
-  "version": {
-    "name": "Radial Head Dislocation",
-    "date": "0000-00-00",
-    "status": "Proposed"
-  },
-  "url": "",
-  "index_codes": [],
-  "body_parts": [
-    {
-      "name": "Elbow"
-    }
-  ],
-  "authors": [],
-  "history": [],
-  "specialty": [
-    {
-      "abbreviation": "MK",
-      "name": "Musculoskeletal Radiology"
-    }
-  ],
-  "elements": [
-    {
-      "id": "RDE254",
-      "name": "Radial head dislocations",
-      "definition": "Defines  status  of  radial  head  dislocations",
-      "question": "Radial head dislocations",
+[
+  {
+    "data": {
+      "id": "RDES5",
+      "name": "Liver Imaging",
+      "description": "The Liver Imaging Reporting and Data System (LI-RADS) was created to standardize the reporting and data collection of CT and MR imaging for hepatocellular carcinoma (HCC). ",
       "version": {
-        "name": "1",
-        "date": "2018-10-26",
+        "name": "Liver Imaging",
+        "date": "0000-00-00",
         "status": "Proposed"
       },
-      "index_codes": [],
-      "authors": [],
-      "history": [],
-      "specialty": [],
-      "value_set": {
-        "min_cardinality": 1,
-        "max_cardinality": 1,
-        "values": [
+      "url": "https://api3.rsna.org/radelement/public/sets/5",
+      "index_codes": [
+        {
+          "system": "RADLEX",
+          "code": "RID49823",
+          "display": "LI-RADS assessment",
+          "href": "http://www.radlex.org/RID/RID49823"
+        }
+      ],
+      "body_parts": [
+        {
+          "name": "Liver",
+          "index_codes": {
+            "system": "RADLEX",
+            "code": "RID58",
+            "display": "liver",
+            "href": "http://www.radlex.org/RID/RID58"
+          }
+        }
+      ],
+      "authors": {
+        "person": [],
+        "organization": [
           {
-            "value": "",
-            "name": "0 Unknown",
-            "definition": "0 Unknown",
-            "images": []
-          },
-          {
-            "value": "",
-            "name": "1 Normal",
-            "definition": "1 Normal",
-            "images": []
-          },
-          {
-            "value": "",
-            "name": "2 Abnormal",
-            "definition": "2 Abnormal",
-            "images": []
+            "name": "Radiological Society of North America",
+            "abbreviation": "RSNA",
+            "url": null,
+            "comment": null,
+            "role": null
           }
         ]
-      }
+      },
+      "history": [],
+      "specialty": [
+        { "abbreviation": "GI", "name": "Gastrointestinal Radiology" },
+        { "abbreviation": "AB", "name": "Abdominal Radiology" }
+      ],
+      "elements": [
+        {
+          "id": "RDE65",
+          "name": "LI-RADS assessment category",
+          "definition": "Ordinal score assigned to an observation indicating its likelihood of hepatocellular carcinoma (HCC) or malignancy. ",
+          "question": "",
+          "version": {
+            "name": "2014",
+            "date": "2014-01-01",
+            "status": "Published"
+          },
+          "index_codes": [
+            {
+              "system": "RADLEX",
+              "code": "RID49794",
+              "display": "LR-1",
+              "href": "http://www.radlex.org/RID/RID49794"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID49795",
+              "display": "LR-2",
+              "href": "http://www.radlex.org/RID/RID49795"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID49796",
+              "display": "LR-3",
+              "href": "http://www.radlex.org/RID/RID49796"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID49797",
+              "display": "LR-4",
+              "href": "http://www.radlex.org/RID/RID49797"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID49799",
+              "display": "LR-5",
+              "href": "http://www.radlex.org/RID/RID49799"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID49802",
+              "display": "LR-5V",
+              "href": "http://www.radlex.org/RID/RID49802"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID49804",
+              "display": "LR-Treated",
+              "href": "http://www.radlex.org/RID/RID49804"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID49803",
+              "display": "LR-M",
+              "href": "http://www.radlex.org/RID/RID49803"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID49823",
+              "display": "LI-RADS assessment",
+              "href": "http://www.radlex.org/RID/RID49823"
+            }
+          ],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "LR-1",
+                "name": "Definitely benign",
+                "definition": "100% certainty observation is benign.  \r\n\r\nObservation with: Imaging features diagnostic of a benign entity\r\nor Definite spontaneous disappearance at follow up\r\n\r\nExamples: Observations that may be categorized as LR-1: definite benign entities.\r\n\r\nReporting: LR-1 observations may be reported at radiologist\u2019s discretion.\r\nSince LR-1 observations are definitely benign, they may be reported or not reported at the radiologist's discretion\r\nLR-1 observations may be reported in aggregate."
+              },
+              {
+                "value": "LR-2",
+                "name": "Probably benign",
+                "definition": "High likelihood observation is benign.\r\n\r\nObservation with imaging features suggestive but not diagnostic of a benign entity.\r\n\r\nExamples:  Observations that may be categorized as LR-2: probable benign entities.\r\n\r\nReporting:  \r\n\r\nLR-2 observations may be reported at the radiologist\u2019s discretion.\r\n\r\nSince LR-2 observations are likely benign, they may be reported or not reported at the radiologist's discretion.\r\n\r\nLR-2 observations may be reported in aggregate.\r\n\r\nManagement implications:\r\n\r\nContinued routine surveillance usually is appropriate."
+              },
+              {
+                "value": "LR-3",
+                "name": "Intermediate probability for HCC",
+                "definition": "Observation that does not meet unequivocal criteria for other LI-RADS categories. \r\n\r\nCriteria:  Not definite benign entity, not probable benign entity, not non-HCC malignancy, not tumor in vein and one of the following:\r\n\r\nMass with hepatic arterial phase hypo- or isoenhancement\r\n< 20mm mass with \u2264 1 of following: \u201cwashout\u201d, \u201ccapsule\u201d, and threshold growth\r\n\u2265 20mm mass with none of following: \u201cwashout\u201d, \u201ccapsule\u201d, and threshold growth\r\nMass with hepatic arterial phase hyperenhancement\r\n< 20mm mass with none of following: \u201cwashout\u201d, \u201ccapsule\u201d, and  threshold growth"
+              },
+              {
+                "value": "LR-4",
+                "name": "Probably HCC",
+                "definition": "Observation with imaging features suggestive but not diagnostic of HCC. "
+              },
+              {
+                "value": "LR-5",
+                "name": "Definitely HCC",
+                "definition": "Observation with imaging features diagnostic of HCC. "
+              },
+              {
+                "value": "LR-5V",
+                "name": "Definite tumor in vein",
+                "definition": "Observation associated with definite tumor in vein.\r\n\r\nCriterion: Definite enhancing soft tissue in vein."
+              },
+              {
+                "value": "LR-M",
+                "name": "Probably malignant, not specific for HCC",
+                "definition": "Observation with one or more imaging features that favor non-HCC malignancy."
+              },
+              {
+                "value": "LR-Treated",
+                "name": "Treated observation",
+                "definition": "An observation that has undergone loco-regional treatment.\r\n\r\nComments: \r\nLR-Treated does not imply that loco-regional treatment was successful.\r\nResidual or recurrent HCC may be present."
+              }
+            ]
+          }
+        },
+        {
+          "id": "RDE80",
+          "name": "Tumor in vein",
+          "definition": "Presence of tumor in vein lumen.",
+          "question": "",
+          "version": {
+            "name": "2014",
+            "date": "2014-01-01",
+            "status": "Proposed"
+          },
+          "index_codes": [
+            {
+              "system": "SNOMEDCT",
+              "code": "52101004",
+              "display": "present",
+              "href": "http://purl.bioontology.org/ontology/SNOMEDCT/52101004"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID28472",
+              "display": "present",
+              "href": "http://www.radlex.org/RID/RID28472"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID39483",
+              "display": "tumor in vein",
+              "href": "http://www.radlex.org/RID/RID39483"
+            },
+            {
+              "system": "SNOMEDCT",
+              "code": "2667000",
+              "display": "absent",
+              "href": "http://purl.bioontology.org/ontology/SNOMEDCT/2667000"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID28473",
+              "display": "absent",
+              "href": "http://www.radlex.org/RID/RID28473"
+            }
+          ],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              { "value": "1", "name": "Present", "definition": null },
+              { "value": "0", "name": "Absent", "definition": null }
+            ]
+          }
+        },
+        {
+          "id": "RDE81",
+          "name": "Diameter",
+          "definition": "The largest dimension (outer edge to outer edge) of an observation, measured in millimeters.",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "integer_values": { "min": 0, "max": 999, "step": 1, "unit": "mm" }
+        },
+        {
+          "id": "RDE83",
+          "name": "Capsule appearance",
+          "definition": "Peripheral rim of smooth hyper-enhancement in the portal venous phase ordelayed phase that unequivocally is thicker or more conspicuous than the rim's surrounding background nodule.",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [
+            {
+              "system": "RADLEX",
+              "code": "RID39146",
+              "display": "capsule appearance",
+              "href": "http://www.radlex.org/RID/RID39146"
+            },
+            {
+              "system": "SNOMEDCT",
+              "code": "10200004",
+              "display": "liver",
+              "href": "http://purl.bioontology.org/ontology/SNOMEDCT/10200004"
+            },
+            {
+              "system": "SNOMEDCT",
+              "code": "181268008",
+              "display": "liver",
+              "href": "http://purl.bioontology.org/ontology/SNOMEDCT/181268008"
+            },
+            {
+              "system": "RADLEX",
+              "code": "RID58",
+              "display": "liver",
+              "href": "http://www.radlex.org/RID/RID58"
+            }
+          ],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "Present",
+                "name": "Capsule appearance.",
+                "definition": null
+              },
+              {
+                "value": "Absent ",
+                "name": "No capsule appearance.",
+                "definition": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "RDE84",
+          "name": "Threshold growth",
+          "definition": "Increase in diameter of a mass compared to its baseline by a minimum of 5 mm AND depending on the time interval between examinations, by the following amounts:<ul><li>&lt;6 months: &gt;50% diameter increase</li><li>&gt;6 months: &gt;100% diameter increase</li></ul>",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "Present",
+                "name": "Threshold growth",
+                "definition": null
+              },
+              {
+                "value": "Absent",
+                "name": "No threshold growth",
+                "definition": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "RDE85",
+          "name": "Washout",
+          "definition": "Enhancement in the portal venous or delayed phases that unequivocally is less than that of liver.",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              { "value": "Present", "name": "Washout", "definition": null },
+              { "value": "Absent", "name": "No washout", "definition": null }
+            ]
+          }
+        },
+        {
+          "id": "RDE86",
+          "name": "Hepatobiliary phase hypointensity",
+          "definition": "Intensity in the hepatobiliary phase that unequivocally is less than that of the surrounding liver.",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "Present",
+                "name": "Hepatobiliary phase hypointensity",
+                "definition": null
+              },
+              {
+                "value": "Absent",
+                "name": "Hepatobiliary phase iso- or hyperintensity",
+                "definition": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "RDE87",
+          "name": "Mild-moderate T2 hyperintensity",
+          "definition": "Having mildly or moderately higher signal intensity on T2w images than liver.",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "Present",
+                "name": "Mild-moderate T2 hyperintensity",
+                "definition": null
+              },
+              {
+                "value": "Absent",
+                "name": "Not mild-moderate T2 hyperintensity",
+                "definition": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "RDE88",
+          "name": "T2 signal intensity",
+          "definition": "Signal intensity relative to liver on T2w images.",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "1",
+                "name": "Mild-moderate T2 hyperintensity, well-defined",
+                "definition": null
+              },
+              {
+                "value": "2",
+                "name": "Mild-moderate T2 hyperintensity, ill-defined",
+                "definition": null
+              },
+              {
+                "value": "3",
+                "name": "Marked T2 hyperintensity",
+                "definition": null
+              },
+              {
+                "value": "4",
+                "name": "Mild T2 hypointensity",
+                "definition": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "RDE89",
+          "name": "Restricted diffusion",
+          "definition": "Having higher signal intensity, not attributable solely to T2 shine-through, than liver on diffusion-weighted (DW) images. ",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "Present",
+                "name": "Restricted diffusion",
+                "definition": null
+              },
+              {
+                "value": "Absent",
+                "name": "No restricted diffusion",
+                "definition": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "RDE90",
+          "name": "Mosaic architecture",
+          "definition": "Observation that appears to consist of nodules or compartments with differing appearances (enhancement, attenuation, intensity).  This term can also be applied to lesions with internal enhancing septations. The nodules, compartments, or septations appear randomly distributed within the observation.",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "Present",
+                "name": "Mosaic architecture",
+                "definition": null
+              },
+              {
+                "value": "Absent",
+                "name": "No mosaic architecture",
+                "definition": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "RDE91",
+          "name": "Intralesional fat",
+          "definition": "Presence of lipid in higher concentration within a mass than in background reference tissue (e.g., liver).",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "Present",
+                "name": "Intralesional fat",
+                "definition": null
+              },
+              {
+                "value": "Absent",
+                "name": "No intralesional fat",
+                "definition": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "RDE82",
+          "name": "Arterial phase hyperenhancement",
+          "definition": "Enhancement in the arterial phase that unequivocally is greater than that of liver.",
+          "question": "",
+          "version": { "name": "", "date": "0000-00-00", "status": "Proposed" },
+          "index_codes": [],
+          "authors": { "person": [], "organization": [] },
+          "history": [],
+          "specialty": [],
+          "references": [],
+          "value_set": {
+            "min_cardinality": 1,
+            "max_cardinality": 1,
+            "values": [
+              {
+                "value": "Present",
+                "name": "Arterial phase hyperenhancement",
+                "definition": null
+              },
+              {
+                "value": "Absent",
+                "name": "Arterial phase hypo- or isoenhancement",
+                "definition": null
+              }
+            ]
+          }
+        }
+      ],
+      "references": []
+    },
+    "meta": {
+      "contactName": "Aranda, Mario",
+      "isUserFavorite": false,
+      "parent": null,
+      "source": [""]
     }
-  ]
-}
+  },
+  {
+    "id": "RDES25",
+    "name": "Accessory Muscles Causing Neurovascular Compromise",
+    "description": "This module describes common data elements for accessory muscles causing neurovascular compromise use case.",
+    "version": {
+      "name": "Accessory Muscles Causing Neurovascular Compromise",
+      "date": "0000-00-00",
+      "status": "Proposed"
+    },
+    "url": "",
+    "index_codes": [],
+    "body_parts": [],
+    "authors": {
+      "person": [
+        {
+          "name": "Munib Sana, MD",
+          "orcid_id": null,
+          "twitter_handle": null,
+          "url": null,
+          "role": null
+        }
+      ],
+      "organization": []
+    },
+    "history": [],
+    "specialty": [
+      {
+        "abbreviation": "MK",
+        "name": "Musculoskeletal Radiology"
+      },
+      {
+        "abbreviation": "MR",
+        "name": "Magnetic Resonance Imaging"
+      }
+    ],
+    "elements": [
+      {
+        "id": "RDE194",
+        "name": "Accessory Muscle",
+        "definition": "Presence of accessory muscle",
+        "question": "Accessory Muscle",
+        "version": {
+          "name": "1",
+          "date": "2018-10-26",
+          "status": "Proposed"
+        },
+        "index_codes": [],
+        "authors": [],
+        "history": [],
+        "specialty": [],
+        "value_set": {
+          "min_cardinality": 1,
+          "max_cardinality": 1,
+          "values": [
+            {
+              "value": "",
+              "name": "0 Unknown",
+              "definition": "0 Unknown",
+              "images": []
+            },
+            {
+              "value": "",
+              "name": "1 Present",
+              "definition": "1 Present",
+              "images": []
+            },
+            {
+              "value": "",
+              "name": "2 Absent",
+              "definition": "2 Absent",
+              "images": []
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "RDES45",
+    "name": "Radial Head Dislocation",
+    "description": "This module describes the common data elements for Radial Head Dislocation use case.",
+    "version": {
+      "name": "Radial Head Dislocation",
+      "date": "2022-10-23",
+      "status": "Proposed"
+    },
+    "url": "",
+    "index_codes": [],
+    "body_parts": [
+      {
+        "name": "Elbow"
+      }
+    ],
+    "authors": [],
+    "history": [],
+    "specialty": [
+      {
+        "abbreviation": "MK",
+        "name": "Musculoskeletal Radiology"
+      }
+    ],
+    "elements": [
+      {
+        "id": "RDE254",
+        "name": "Radial head dislocations",
+        "definition": "Defines  status  of  radial  head  dislocations",
+        "question": "Radial head dislocations",
+        "version": {
+          "name": "1",
+          "date": "2018-10-26",
+          "status": "Proposed"
+        },
+        "index_codes": [],
+        "authors": [],
+        "history": [],
+        "specialty": [],
+        "value_set": {
+          "min_cardinality": 1,
+          "max_cardinality": 1,
+          "values": [
+            {
+              "value": "",
+              "name": "0 Unknown",
+              "definition": "0 Unknown",
+              "images": []
+            },
+            {
+              "value": "",
+              "name": "1 Normal",
+              "definition": "1 Normal",
+              "images": []
+            },
+            {
+              "value": "",
+              "name": "2 Abnormal",
+              "definition": "2 Abnormal",
+              "images": []
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
