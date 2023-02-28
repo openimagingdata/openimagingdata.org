@@ -1,0 +1,66 @@
+{
+  "id": "RDES45",
+  "name": "Radial Head Dislocation",
+  "description": "This module describes the common data elements for Radial Head Dislocation use case.",
+  "version": {
+    "name": "Radial Head Dislocation",
+    "date": "0000-00-00",
+    "status": "Proposed"
+  },
+  "url": "",
+  "index_codes": [],
+  "body_parts": [
+    {
+      "name": "Elbow"
+    }
+  ],
+  "authors": [],
+  "history": [],
+  "specialty": [
+    {
+      "abbreviation": "MK",
+      "name": "Musculoskeletal Radiology"
+    }
+  ],
+  "elements": [
+    {
+      "id": "RDE254",
+      "name": "Radial head dislocations",
+      "definition": "Defines  status  of  radial  head  dislocations",
+      "question": "Radial head dislocations",
+      "version": {
+        "name": "1",
+        "date": "2018-10-26",
+        "status": "Proposed"
+      },
+      "index_codes": [],
+      "authors": [],
+      "history": [],
+      "specialty": [],
+      "value_set": {
+        "min_cardinality": 1,
+        "max_cardinality": 1,
+        "values": [
+          {
+            "value": "",
+            "name": "0 Unknown",
+            "definition": "0 Unknown",
+            "images": []
+          },
+          {
+            "value": "",
+            "name": "1 Normal",
+            "definition": "1 Normal",
+            "images": []
+          },
+          {
+            "value": "",
+            "name": "2 Abnormal",
+            "definition": "2 Abnormal",
+            "images": []
+          }
+        ]
+      }
+    }
+  ]
+}
