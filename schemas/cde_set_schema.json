@@ -1,24 +1,8 @@
 {
-    "$schema": "http://json-schema.org/draft-06/schema#",
-    "$ref": "#/definitions/Wrapper",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$ref": "#/definitions/DataElementSet",
+    "$id": "https://openraddata.org/schemas/cde_set_schema.json",
     "definitions": {
-        "Wrapper": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "$schema": {
-                    "type": "string"
-                },
-                "data_element_set": {
-                    "$ref": "#/definitions/DataElementSet"
-                }
-            },
-            "required": [
-                "$schema",
-                "data_element_set"
-            ],
-            "title": "Wrapper"
-        },
         "DataElementSet": {
             "type": "object",
             "additionalProperties": false,
@@ -69,7 +53,10 @@
                     }
                 },
                 "elements": {
-                    "$ref": "#/definitions/Elements"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Element"
+                    }
                 }
             },
             "required": [
@@ -181,22 +168,6 @@
                 "name"
             ],
             "title": "Person"
-        },
-        "Elements": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "element": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Element"
-                    }
-                }
-            },
-            "required": [
-                "element"
-            ],
-            "title": "Elements"
         },
         "Element": {
             "type": "object",
