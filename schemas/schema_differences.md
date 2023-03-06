@@ -8,15 +8,27 @@ The CDE Set Schema is a RelaxNG schema that defines the structure of a CDE Set. 
 - CDE Set Schema defines a `<url>` element of `<index_code>`, while the API defines an `href` property of the `index_code` object.
 - CDE Set Schema specifies that `<system>` may be `RADLEX`, `SNOMEDCT`, or `LOINC`, while the API doesn't appear to constrain it (or constrains it according to its internal database)
 
-### Present in CDE Set Schema, not in RadElement API
+### `Set` Definition Differences
+- Present in CDE Set Schema, not in RadElement API
+    - `images`
+    - `modality` (a complex structure)
+    - `biological_sex`
+    - `age_range`
+-  Present in RadElement API, not in CDE Set Schema
+    - `url`
+    - `body_parts`
 
-- `references`
-- `images`
-- `modality` (a complex structure)
-- `biological_sex`
-- `age_range`
+### `Element` Definition Differences
 
-### Present in RadElement API, not in CDE Set Schema
-
-- `url`
-- `body_parts`
+- Schema elements without corresponding API properties:
+  - `<parent_set>`
+  - `<images>`
+  - `<biological_sex>`
+  - `<age_range>`
+  - `<modality>`
+- API properties without corresponding schema elements:
+  - `url`
+  - `question`
+- In `<element>`/`<value_set>`, schema has child elements not clearly in API:
+  - `<references>`
+- In `<element>`/`<float_values>`, `<step>` is defined as an integer; not apparently so in the API (but is the schema right?)
