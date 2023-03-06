@@ -94,7 +94,10 @@
                     "$ref": "#/definitions/Version"
                 },
                 "index_codes": {
-                    "$ref": "#/definitions/IndexCodes"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IndexCode"
+                    }
                 },
                 "specialty": {
                     "type": "array",
@@ -157,7 +160,10 @@
                     "$ref": "#/definitions/Authors"
                 },
                 "references": {
-                    "$ref": "#/definitions/References"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    }
                 }
             },
             "required": [
@@ -225,7 +231,7 @@
                 "index_codes": {
                     "$ref": "#/definitions/IndexCode"
                 }
-            }
+            },
             "required": [
                 "name"
             ]
@@ -342,7 +348,10 @@
                     "type": "string"
                 },
                 "index_codes": {
-                    "$ref": "#/definitions/ValueIndexCodes"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IndexCode"
+                    }
                 }
             },
             "required": [
@@ -351,22 +360,6 @@
                 "value"
             ],
             "title": "Value"
-        },
-        "ValueIndexCodes": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "index_code": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Modality"
-                    }
-                }
-            },
-            "required": [
-                "index_code"
-            ],
-            "title": "ValueIndexCodes"
         },
         "Modality": {
             "type": "object",
