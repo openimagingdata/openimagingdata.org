@@ -6,10 +6,16 @@
         "DataElementSet": {
             "type": "object",
             "additionalProperties": false,
+            "patternProperties": {
+                "^\\$": {
+                    "description": "Any property starting with $ is reserved for notations and extensions",
+                    "tsType": "any"
+                }
+            },
             "properties": {
                 "id": {
                     "type": "string",
-                    "pattern": "^RDES\\d+"
+                    "pattern": "^(RDES\\d+|CDESTGS-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})$"
                 },
                 "name": {
                     "type": "string"
@@ -82,12 +88,16 @@
             "additionalProperties": false,
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^(RDE\\d+|CDESTG-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})$"
                 },
                 "name": {
                     "type": "string"
                 },
                 "definition": {
+                    "type": "string"
+                },
+                "question": {
                     "type": "string"
                 },
                 "version": {
@@ -97,6 +107,15 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/IndexCode"
+                    }
+                },
+                "authors": {
+                    "$ref": "#/definitions/Authors"
+                },
+                "history": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Event"
                     }
                 },
                 "specialty": {
@@ -116,7 +135,6 @@
                 "definition",
                 "id",
                 "name",
-                "parent_set",
                 "version"
             ],
             "title": "Element"
@@ -202,18 +220,18 @@
                     "type": "string"
                 },
                 "orcid_id": {
-                    "type": "string"
+                    "type": ["string", "null"]
                 },
                 "twitter_handle": {
-                    "type": "string"
+                    "type": ["string", "null"]
                 },
                 "url": {
-                    "type": "string",
+                    "type": ["string", "null"],
                     "format": "uri"
                 },
                 "role": {
-                    "type": "string",
-                    "enum": ["author", "editor", "translator", "reviewer", "contributor"]
+                    "type": ["string", "null"],
+                    "enum": ["author", "editor", "translator", "reviewer", "contributor", null]
                 }
             },
             "required": [
@@ -316,14 +334,12 @@
             "additionalProperties": false,
             "properties": {
                 "min_cardinality": {
-                    "type": "string",
-                    "format": "integer"
+                    "type": "integer"
                 },
                 "max_cardinality": {
-                    "type": "string",
-                    "format": "integer"
+                    "type": "integer"
                 },
-                "value": {
+                "values": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Value"
@@ -347,6 +363,9 @@
                 "name": {
                     "type": "string"
                 },
+                "definition": {
+                    "type": "string"
+                },
                 "index_codes": {
                     "type": "array",
                     "items": {
@@ -361,49 +380,12 @@
                 }
             },
             "required": [
-                "index_codes",
                 "name",
-                "value"
+                "values"
             ],
             "title": "Value"
         },
-        "Modality": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "system": {
-                    "type": "string",
-                    "enum": ["RADLEX"]
-                },
-                "code": {
-                    "type": "string",
-                    "enum": ["CT", "FL", "MR", "NM", "PET", "US", "XR"]
-                },
-                "url": {
-                    "type": "string",
-                    "format": "uri",
-                    "pattern": "^http://radlex.org/RID/RID103(21|61|12|30|37|26|45)$"
-                },
-                "name": {
-                    "type": "string",
-                    "enum": ["Computed Tomography", 
-                        "Fluoroscopy", 
-                        "Magnetic Resonance Imaging", 
-                        "Nuclear Medicine", 
-                        "Positron Emission Tomography", 
-                        "Ultrasound", 
-                        "Projection Radiography"]
-                }
-            },
-            "required": [
-                "code",
-                "system",
-                "url",
-                "name"
-            ],
-            "title": "Modality"
-        },
-        "Specialty": {
+       "Specialty": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
@@ -412,7 +394,10 @@
                 },
                 "abbreviation": {
                     "type": "string",
-                    "enum": ["AB", "BR", "CA", "CH", "ER", "GI", "GU", "HN", "IR", "MI", "MK", "NR", "OB", "OI", "OT", "PD", "QI", "RS", "VI"]
+                    "enum": ["BR", "BQ", "CA", "CH", "ER", "GI", "GU", "HN", "IR", "MI", "MK", "NR", "OB", "OI", "OT",
+                    "PD", "QI", "RS", "VA",
+                    "CT", "MR", "NM", "US",
+                    "AI", "ED", "HP", "IN", "LM", "PH", "PR", "RO", "SQ"]
                 }
             },
             "required": [
@@ -445,7 +430,7 @@
         },
         "Status": {
             "type": "string",
-            "enum": ["proposed", "published", "retired"]
+            "enum": ["Proposed", "Published", "Retired"]
         },
         "Reference": {
             "type": "object",

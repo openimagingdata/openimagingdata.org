@@ -1,10 +1,10 @@
 {
     "$schema": "./cde_set_schema.json",
-    "id": "#SETID",
+    "id": "CDESTGS-00726a26-0124-4cd7-928a-4459addd65b2",
     "name": "Distal Radius Fracture",
     "description": "Properties associated with a distal radius fracture",
     "version": {
-        "status": "proposed",
+        "status": "Proposed",
         "date": "2023-03-07",
         "name": "TestVersion"
     },
@@ -30,8 +30,19 @@
         }
     ],
     "authors": {
-        "person": [],
-        "organization": []
+        "person": [
+            {
+                "name": "Tarik Alkasab",
+                "role": "author"
+            }
+        ],
+        "organization": [
+            {
+                "name": "OpenRadData",
+                "role": "author",
+                "url": "https://openraddata.org"
+            }
+        ]
     },
     "history": [
         {
@@ -39,7 +50,18 @@
             "status": "proposed"
         }
     ],
-    "specialty": [],
+    "specialty": [
+        { 
+            "name": "Musculoskeletal Imaging",
+            "abbreviation": "MK"
+        }
+    ],
     "elements": [],
-    "references": []
+    "references": [
+        {
+            "citation": "Goldfarb CA, Yin Y, Gilula LA et-al. Wrist fractures: what the clinician wants to know. Radiology. 2001;219 (1): 11-28.",
+            "doi_url": "http://dx.doi.org/10.1177/1753193408090099",
+            "pubmed_id": "11274530"
+        }
+    ]
 }
