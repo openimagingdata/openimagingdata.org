@@ -352,6 +352,12 @@
                     "items": {
                         "$ref": "#/definitions/IndexCode"
                     }
+                },
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Image"
+                    }
                 }
             },
             "required": [

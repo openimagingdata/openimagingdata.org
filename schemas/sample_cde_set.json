@@ -1,31 +1,45 @@
 {
     "$schema": "./cde_set_schema.json",
-    "data_element_set": {
-        "id": "",
-        "name": "Liver Lesion",
-        "description": "Incidental liver lesion",
-        "version": {
-            "date": "2020-01-01",
-            "name": "1.0.0",
-            "status": "proposed"
-        },
-        "authors": {
-            "person": [
-                {
-                    "name": "John Doe",
-                    "orcid": "0000-0000-0000-0000",
-                    "affiliation": "University of California, San Francisco"
-                }
-            ]
-        },
-        "specialty": {
-            "name": "Abdominal Radiology",
-            "abbreviation": "AB"
-        },
-        "elements": {
-            "element": [
-
-            ]
+    "id": "#SETID",
+    "name": "Distal Radius Fracture",
+    "description": "Properties associated with a distal radius fracture",
+    "version": {
+        "status": "proposed",
+        "date": "2023-03-07",
+        "name": "TestVersion"
+    },
+    "url": "https://openraddata.org/schemas/sample_cde_set.json",
+    "index_codes": [
+        {
+            "system": "RADLEX",
+            "code": "RADLEX:1001",
+            "display": "Distal Radius Fracture",
+            "href": "https://radlex.org/RID/1001"
         }
-    }
+    ],
+    "body_parts": [
+        {
+            "name": "Wrist",
+            "index_codes": {
+                "system": "SNOMEDCT",
+                "code": "363346000",
+                "display": "Wrist",
+                "href": "https://snomedbrowser.com/Codes/Details/363346000"
+            }
+
+        }
+    ],
+    "authors": {
+        "person": [],
+        "organization": []
+    },
+    "history": [
+        {
+            "date": "2023-03-07",
+            "status": "proposed"
+        }
+    ],
+    "specialty": [],
+    "elements": [],
+    "references": []
 }
