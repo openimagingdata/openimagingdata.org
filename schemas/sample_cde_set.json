@@ -47,7 +47,7 @@
     "history": [
         {
             "date": "2023-03-07",
-            "status": "proposed"
+            "status": "Proposed"
         }
     ],
     "specialty": [
@@ -56,7 +56,34 @@
             "abbreviation": "MK"
         }
     ],
-    "elements": [],
+    "elements": [
+        {
+            "id": "",
+            "name": "",
+            "version": {
+                "name": "",
+                "date": "",
+                "status": ""
+            },
+            "index_codes": [
+                {
+                    "system": "",
+                    "code": "",
+                    "display": "",
+                    "href": ""
+                }
+            ],
+            "authors": [],
+            "value_set": {
+                "values": [
+                    {
+                        "name": "",
+                        "value": ""
+                   }
+                ]
+            }
+        }
+    ],
     "references": [
         {
             "citation": "Goldfarb CA, Yin Y, Gilula LA et-al. Wrist fractures: what the clinician wants to know. Radiology. 2001;219 (1): 11-28.",

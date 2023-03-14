@@ -110,7 +110,10 @@
                     }
                 },
                 "authors": {
-                    "$ref": "#/definitions/Authors"
+                    "type": "array",
+                    "$ref": "#/definitions/Person",
+                    "minItems": 0,
+                    "default": []
                 },
                 "history": {
                     "type": "array",
@@ -129,13 +132,40 @@
                 },
                 "value_set": {
                     "$ref": "#/definitions/ValueSet"
+                },
+                "float_values": {
+                    "$ref": "#/definitions/FloatValues"
+                },
+                "boolean_values": {
+                    "$ref": "#/definitions/BooleanValues"
                 }
             },
             "required": [
-                "definition",
                 "id",
                 "name",
                 "version"
+            ],
+            "oneOf": [
+                {
+                    "required": [
+                        "integer_values"
+                    ]
+                },
+                {
+                    "required": [
+                        "value_set"
+                    ]
+                },
+                {
+                    "required": [
+                        "float_values"
+                    ]
+                },
+                {
+                    "required": [
+                        "boolean_values"
+                    ]
+                }
             ],
             "title": "Element"
         },
@@ -279,28 +309,42 @@
             "additionalProperties": false,
             "properties": {
                 "min": {
-                    "type": "string",
-                    "format": "integer"
+                    "type": "integer"
                 },
                 "max": {
-                    "type": "string",
-                    "format": "integer"
+                    "type": "integer"
                 },
                 "step": {
-                    "type": "string",
-                    "format": "integer"
+                    "type": "integer"
                 },
                 "unit": {
                     "type": "string"
                 }
             },
-            "required": [
-                "max",
-                "min",
-                "step",
-                "unit"
-            ],
             "title": "IntegerValues"
+        },
+        "FloatValues": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "min": {
+                    "type": "number"
+                },
+                "max": {
+                    "type": "number"
+                },
+                "step": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            },
+            "title": "Float Values"
+        },
+        "BooleanValues": {
+            "type": "boolean",
+            "const": true
         },
         "Organization": {
             "type": "object",
@@ -343,13 +387,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Value"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "required": [
-                "max_cardinality",
-                "min_cardinality",
-                "value"
+                "values"
             ],
             "title": "ValueSet"
         },
@@ -381,7 +424,7 @@
             },
             "required": [
                 "name",
-                "values"
+                "value"
             ],
             "title": "Value"
         },
