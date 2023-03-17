@@ -1,11 +1,11 @@
 {
     "$schema": "./cde_set_schema.json",
-    "id": "CDESTGS-00726a26-0124-4cd7-928a-4459addd65b2",
-    "name": "Distal Radius Fracture",
-    "description": "Properties associated with a distal radius fracture",
+    "id": "RDES3",
+    "name": "CAR/DS Adrenal Nodule",
+    "description": "ACR Assist project for describing adrenal nodules.",
     "version": {
         "status": "Proposed",
-        "date": "2023-03-07",
+        "date": "20232015-03-07",
         "name": "TestVersion"
     },
     "url": "https://openraddata.org/schemas/sample_cde_set.json",
@@ -34,14 +34,17 @@
             {
                 "name": "Tarik Alkasab",
                 "role": "author"
-            }
-        ],
+              },
+              {
+                "name": "Marc Kohli",
+                "orcid_id": "0000-0003-3720-0156"
+              }
+              ],
         "organization": [
             {
-                "name": "OpenRadData",
-                "role": "author",
-                "url": "https://openraddata.org"
-            }
+                "name": "American College of Radiology",
+                "abbreviation": "ACR"
+              }
         ]
     },
     "history": [
@@ -51,44 +54,115 @@
         }
     ],
     "specialty": [
-        { 
-            "name": "Musculoskeletal Imaging",
-            "abbreviation": "MK"
-        }
+          {
+            "name": "Genitourinary Radiology",
+            "abbreviation": "GU"
+          }
     ],
     "elements": [
         {
-            "id": "",
-            "name": "",
+            "id": "RDE41",
+            "parent_set": "RDES3",
+            "name": "Nodule size",
+            "definition": "The greatest linear dimension of the adrenal nodule.",
             "version": {
-                "name": "",
-                "date": "",
-                "status": ""
+              "name": "1",
+              "date": "2015-07-05",
+              "status": "proposed"
             },
-            "index_codes": [
-                {
-                    "system": "",
-                    "code": "",
-                    "display": "",
-                    "href": ""
-                }
+            "index_codes": {
+              "index_code": {
+                "system": "SNOMEDCT",
+                "code": "246120007",
+                "url": "http://snomed.info/sct",
+                "display": "nodule size"
+              }
+            },
+            "specialty": [
+              {
+                "name": "Abdominal Radiology",
+                "abbreviation": "AB"
+              },
+              {
+                "name": "Genitourinary Radiology",
+                "abbreviation": "GU"
+              }
             ],
-            "authors": [],
-            "value_set": {
-                "values": [
-                    {
-                        "name": "",
-                        "value": ""
-                   }
-                ]
+            "integer_values": {
+              "min": "0",
+              "max": "999",
+              "step": "1",
+              "unit": "mm"
             }
-        }
+          },
+          {
+            "id": "RDE42",
+            "parent_set": "RDES3",
+            "name": "Side",
+            "definition": "The side of the body (right or left)",
+            "version": {
+              "name": "1",
+              "date": "2015-07-05",
+              "status": "proposed"
+            },
+            "value_set": {
+              "min_cardinality": "1",
+              "max_cardinality": "1",
+              "value": [
+                {
+                  "value": "R",
+                  "name": "Right",
+                  "index_codes": {
+                    "index_code": [
+                      {
+                        "system": "RADLEX",
+                        "code": "RID5828",
+                        "url": "http://radlex.org/",
+                        "display": "Right"
+                      },
+                      {
+                        "system": "SNOMEDCT",
+                        "code": "24028007",
+                        "url": "http://snomed.info/sct",
+                        "display": "Right"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "value": "L",
+                  "name": "Left",
+                  "index_codes": {
+                    "index_code": [
+                      {
+                        "system": "RADLEX",
+                        "code": "RID5824",
+                        "url": "http://radlex.org/",
+                        "display": "Left"
+                      },
+                      {
+                        "system": "SNOMEDCT",
+                        "code": "7771000",
+                        "url": "http://snomed.info/sct",
+                        "display": "Left"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
     ],
     "references": [
+    {
+        "citation": "Sangwaiya MJ, Boland GW, Cronin CG et-al. Incidental adrenal lesions: accuracy of\n        characterization with contrast-enhanced washout multidetector CT-10-minute delayed imaging\n        protocol revisited in a large patient cohort. Radiology. 2010;256 (2): 504-10.",
+        "doi_url": "http://dx.doi.org/10.1148/radiol.10091386",
+        "pubmed_id": "20656838"
+        },
         {
-            "citation": "Goldfarb CA, Yin Y, Gilula LA et-al. Wrist fractures: what the clinician wants to know. Radiology. 2001;219 (1): 11-28.",
-            "doi_url": "http://dx.doi.org/10.1177/1753193408090099",
-            "pubmed_id": "11274530"
+        "citation": "Blake MA, Cronin CG, Boland GW. Adrenal imaging. AJR Am J Roentgenol. 2010;194 (6):\n        1450-60.",
+        "doi_url": "http://dx.doi.org/10.2214/AJR.10.4547",
+        "pubmed_id": "20489083"
         }
     ]
 }
