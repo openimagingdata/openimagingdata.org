@@ -71,16 +71,7 @@
                     }
                 }
             },
-            "required": [
-                "id",
-                "name",
-                "description",
-                "version",
-                "elements",
-                "history",
-                "index_codes",
-                "specialty"
-            ],
+            "required": ["id", "name", "description", "version", "elements", "history", "index_codes", "specialty"],
             "title": "DataElementSet"
         },
         "Element": {
@@ -113,10 +104,15 @@
                     }
                 },
                 "authors": {
-                    "type": "array",
-                    "$ref": "#/definitions/Person",
-                    "minItems": 0,
-                    "default": []
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Authors"
+                        },
+                        {
+                            "type": "array",
+                            "const": []
+                        }
+                    ]
                 },
                 "history": {
                     "type": "array",
@@ -128,6 +124,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Specialty"
+                    }
+                },
+                "references": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Reference"
                     }
                 },
                 "integer_values": {
@@ -143,31 +145,19 @@
                     "$ref": "#/definitions/BooleanValues"
                 }
             },
-            "required": [
-                "id",
-                "name",
-                "version"
-            ],
+            "required": ["id", "name", "version"],
             "oneOf": [
                 {
-                    "required": [
-                        "integer_values"
-                    ]
+                    "required": ["integer_values"]
                 },
                 {
-                    "required": [
-                        "value_set"
-                    ]
+                    "required": ["value_set"]
                 },
                 {
-                    "required": [
-                        "float_values"
-                    ]
+                    "required": ["float_values"]
                 },
                 {
-                    "required": [
-                        "boolean_values"
-                    ]
+                    "required": ["boolean_values"]
                 }
             ],
             "title": "Element"
@@ -217,9 +207,7 @@
                     }
                 }
             },
-            "required": [
-                "url"
-            ],
+            "required": ["url"],
             "title": "Image"
         },
         "BiologicalSex": {
@@ -267,9 +255,7 @@
                     "enum": ["author", "editor", "translator", "reviewer", "contributor", null]
                 }
             },
-            "required": [
-                "name"
-            ],
+            "required": ["name"],
             "title": "Person"
         },
         "BodyPart": {
@@ -283,9 +269,7 @@
                     "$ref": "#/definitions/IndexCode"
                 }
             },
-            "required": [
-                "name"
-            ]
+            "required": ["name"]
         },
         "IndexCode": {
             "type": "object",
@@ -351,8 +335,8 @@
             "title": "Float Values"
         },
         "BooleanValues": {
-            "type": "boolean",
-            "const": true
+            "type": "string",
+            "const": "boolean"
         },
         "Organization": {
             "type": "object",
@@ -376,9 +360,7 @@
                     "enum": ["author", "sponsor", "translator", "reviewer", "contributor"]
                 }
             },
-            "required": [
-                "name"
-            ],
+            "required": ["name"],
             "title": "Organization"
         },
         "ValueSet": {
@@ -401,9 +383,7 @@
                     "minItems": 1
                 }
             },
-            "required": [
-                "values"
-            ],
+            "required": ["values"],
             "title": "ValueSet"
         },
         "Value": {
@@ -411,7 +391,8 @@
             "additionalProperties": false,
             "properties": {
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^(RDE\\d+|CDESTG-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})\\.\\d+$"
                 },
                 "name": {
                     "type": "string"
@@ -432,13 +413,10 @@
                     }
                 }
             },
-            "required": [
-                "name",
-                "value"
-            ],
+            "required": ["name", "value"],
             "title": "Value"
         },
-       "Specialty": {
+        "Specialty": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
@@ -447,16 +425,10 @@
                 },
                 "abbreviation": {
                     "type": "string",
-                    "enum": ["BR", "BQ", "CA", "CH", "ER", "GI", "GU", "HN", "IR", "MI", "MK", "NR", "OB", "OI", "OT",
-                    "PD", "QI", "RS", "VA",
-                    "CT", "MR", "NM", "US",
-                    "AI", "ED", "HP", "IN", "LM", "PH", "PR", "RO", "SQ"]
+                    "enum": ["BR", "BQ", "CA", "CH", "ER", "GI", "GU", "HN", "IR", "MI", "MK", "NR", "OB", "OI", "OT", "PD", "QI", "RS", "VA", "CT", "MR", "NM", "US", "AI", "ED", "HP", "IN", "LM", "PH", "PR", "RO", "SQ"]
                 }
             },
-            "required": [
-                "name", 
-                "abbreviation"
-            ],
+            "required": ["name", "abbreviation"],
             "title": "Specialty"
         },
         "Version": {
@@ -474,11 +446,7 @@
                     "$ref": "#/definitions/Status"
                 }
             },
-            "required": [
-                "date",
-                "name",
-                "status"
-            ],
+            "required": ["date", "name", "status"],
             "title": "Version"
         },
         "Status": {
@@ -506,9 +474,7 @@
                     "format": "uri"
                 }
             },
-            "required": [
-                "citation"
-            ],
+            "required": ["citation"],
             "title": "Reference"
         }
     }

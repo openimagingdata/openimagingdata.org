@@ -1,0 +1,72 @@
+{
+    "$schema": "./cde_set_schema.json",
+    "id": "CDESTGS-cd351124-544e-4332-80fc-544d15fe1157",
+    "name": "Sample CDE Set",
+    "description": "New set to flesh out how we're going to build out CDE sets using snippets",
+    "version": {
+        "status": "Proposed",
+        "date": "2023-03-21",
+        "name": "starting"
+    },
+    "index_codes": [],
+    "body_parts": [],
+    "authors": {
+        "person": [],
+        "organization": []
+    },
+    "history": [
+        {
+            "date": "2023-03-21",
+            "status": "Proposed"
+        }
+    ],
+    "specialty": [],
+    "elements": [
+        {
+            "id": "CDESTG-2ec96317-e273-4376-ba8e-e04432e29730",
+            "name": "Sample CDE",
+            "definition": "Whatever",
+            "question": "Whatever else",
+            "version": {
+                "name": "Start",
+                "date": "2023-03-21",
+                "status": "Proposed"
+            },
+            "index_codes": [],
+            "integer_values": {
+                "min": 0,
+                "max": 999,
+                "step": 1,
+                "unit": "mm"
+            }
+        },
+        {
+            "id": "CDESTG-74250c49-980d-47c7-9021-dcbda08904fe",
+            "name": "Sample CDE",
+            "definition": "Big sentence on whatever",
+            "version": {
+                "name": "",
+                "date": "2023-03-21",
+                "status": "Proposed"
+                },
+            "index_codes": [],
+                    "value_set": {
+                        "min_cardinality": 1,
+                        "max_cardinality": 1,
+                        "values": [
+                            {
+                                "value": "CDESTG-00000000-0000-1000-8000-000000000000.0",
+                                "name": "First choice",
+                                "index_codes": []
+                            },
+                            {
+                                "value": "CDESTG-00000000-0000-1000-8000-000000000000.1",
+                                "name": "Second choice",
+                                "index_codes": []
+                            }
+                        ]
+                    }
+                }
+    ],
+    "references": []
+}
