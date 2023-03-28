@@ -145,7 +145,7 @@
                     "$ref": "#/definitions/BooleanValues"
                 }
             },
-            "required": ["id", "name", "version"],
+            "required": ["id", "name", "definition", "version", "history"],
             "oneOf": [
                 {
                     "required": ["integer_values"]
@@ -209,10 +209,6 @@
             },
             "required": ["url"],
             "title": "Image"
-        },
-        "BiologicalSex": {
-            "type": "string",
-            "enum": ["M", "F"]
         },
         "Authors": {
             "type": "object",
@@ -289,7 +285,8 @@
                 "display": {
                     "type": "string"
                 }
-            }
+            },
+            "required": ["system", "code"]
         },
         "IntegerValues": {
             "type": "object",

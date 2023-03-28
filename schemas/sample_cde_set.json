@@ -76,6 +76,7 @@
                     "display": "nodule size"
                 }
             ],
+            "history": [],
             "specialty": [
                 {
                     "name": "Genitourinary Radiology",
@@ -98,6 +99,7 @@
                 "date": "2015-07-05",
                 "status": "Proposed"
             },
+            "history": [],
             "value_set": {
                 "min_cardinality": 1,
                 "max_cardinality": 1,
