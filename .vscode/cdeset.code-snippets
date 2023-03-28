@@ -74,6 +74,31 @@
 		],
 		"description": "Integer Element"
 	  },
+	  "Float Element": {
+		"prefix": "floatel",
+		"scope": "json, jsonc",
+		"body": [
+		  "{",
+		  "    \"id\": \"CDESTG-$UUID\",",
+		  "    \"name\": \"$1\",",
+		  "    \"definition\": \"$2\",",
+		  "    ${3:\"question\": \"$4\",}",
+		  "    \"version\": {",
+		  "        \"name\": \"Start\",",
+		  "        \"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
+		  "        \"status\": \"Proposed\"",
+		  "    },",
+		  "    \"index_codes\": [],",
+		  "    \"float_values\": {",
+		  "        \"min\": ${5:0},",
+		  "        \"max\": ${6:999},",
+		  "        \"step\": ${7:0.1},",
+		  "        \"unit\": \"${8:mm}\"",
+		  "    }",
+		  "}$0"
+		],
+		"description": "Float Element"
+	  },
 	  "Value Set Element": {
 		"prefix": "valsetel",
 		"body": [
@@ -103,9 +128,9 @@
 		"prefix": "valsetval",
 		"body": [
 		  "{",
-		  "    \"value\": \"CDESTG-00000000-0000-1000-8000-000000000000.${1:0}\",",
-		  "    \"name\": \"$2\",",
-		  "    \"index_codes\": []",
+		  "\t\"value\": \"CDESTG-00000000-0000-1000-8000-000000000000.${1:0}\",",
+		  "\t\"name\": \"$2\",",
+		  "\t\"index_codes\": []",
 		  "}$0"
 		],
 		"description": "Value Set Value"
