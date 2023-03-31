@@ -1,138 +1,200 @@
 {
-	// Place your openraddata.org workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
-	// Placeholders with the same ids are connected.
-	// Example:
-	// "Print to console": {
-	// 	"scope": "javascript,typescript",
-	// 	"prefix": "log",
-	// 	"body": [
-	// 		"console.log('$1');",
-	// 		"$2"
-	// 	],
-	// 	"description": "Log output to console"
-	// }
-    "CDE Set": {
-        "prefix": "set",
-        "scope": "json, jsonc",
-        "body": [
-          "{",
-          "    \"\\$schema\": \"./cde_set_schema.json\",",
-          "    \"id\": \"CDESTGS-$UUID\",",
-          "    \"name\": \"$1\",",
-          "    \"description\": \"$2\",",
-          "    \"version\": {",
-          "        \"status\": \"Proposed\",",
-          "        \"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
-          "        \"name\": \"$3\"",
-          "    },",
-          "    \"index_codes\": [],",
-          "    \"body_parts\": [],",
-          "    \"authors\": {",
-          "        \"person\": [],",
-          "        \"organization\": []",
-          "    },",
-          "    \"history\": [",
-          "        {",
-          "            \"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
-          "            \"status\": \"Proposed\"",
-          "        }",
-          "    ],",
-          "    \"specialty\": [],",
-          "    \"elements\": [$0],",
-          "    \"references\": []",
-          "}",
-          ""
-        ],
-        "description": "CDE Set"
-      },
-	  "Integer Element": {
-		"prefix": "intel",
-		"scope": "json, jsonc",
-		"body": [
-		  "{",
-		  "    \"id\": \"CDESTG-$UUID\",",
-		  "    \"name\": \"$1\",",
-		  "    \"definition\": \"$2\",",
-		  "    ${3:\"question\": \"$4\",}",
-		  "    \"version\": {",
-		  "        \"name\": \"Start\",",
-		  "        \"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
-		  "        \"status\": \"Proposed\"",
-		  "    },",
-		  "    \"index_codes\": [],",
-		  "    \"integer_values\": {",
-		  "        \"min\": ${5:0},",
-		  "        \"max\": ${6:999},",
-		  "        \"step\": ${7:1},",
-		  "        \"unit\": \"${8:mm}\"",
-		  "    }",
-		  "}$0"
-		],
-		"description": "Integer Element"
-	  },
-	  "Float Element": {
-		"prefix": "floatel",
-		"scope": "json, jsonc",
-		"body": [
-		  "{",
-		  "    \"id\": \"CDESTG-$UUID\",",
-		  "    \"name\": \"$1\",",
-		  "    \"definition\": \"$2\",",
-		  "    ${3:\"question\": \"$4\",}",
-		  "    \"version\": {",
-		  "        \"name\": \"Start\",",
-		  "        \"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
-		  "        \"status\": \"Proposed\"",
-		  "    },",
-		  "    \"index_codes\": [],",
-		  "    \"float_values\": {",
-		  "        \"min\": ${5:0},",
-		  "        \"max\": ${6:999},",
-		  "        \"step\": ${7:0.1},",
-		  "        \"unit\": \"${8:mm}\"",
-		  "    }",
-		  "}$0"
-		],
-		"description": "Float Element"
-	  },
-	  "Value Set Element": {
-		"prefix": "valsetel",
-		"body": [
-		  "{",
-		  "    \"id\": \"CDESTG-$UUID\",",
-		  "    \"name\": \"$1\",",
-		  "    \"definition\": \"$2\",",
-		  "    ${3:\"question\": \"$4\",}",
-		  "    \"version\": {",
-		  "        \"name\": \"\",",
-		  "        \"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
-		  "        \"status\": \"Proposed\"",
-		  "        },",
-		  "    \"index_codes\": [],",
-		  "    \"value_set\": {",
-		  "        \"min_cardinality\": ${5:1},",
-		  "        \"max_cardinality\": ${6:1},",
-		  "        \"values\": [",
-		  "             $0",
-		  "         ]",
-		  "     }",
-		  "}"
-		],
-		"description": "Value Set Element"
-	  },
-	  "Value Set Value": {
-		"prefix": "valsetval",
-		"body": [
-		  "{",
-		  "\t\"value\": \"CDESTG-00000000-0000-1000-8000-000000000000.${1:0}\",",
-		  "\t\"name\": \"$2\",",
-		  "\t\"index_codes\": []",
-		  "}$0"
-		],
-		"description": "Value Set Value"
-	  }
+  // Place your openraddata.org workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"scope": "javascript,typescript",
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "CDE Set": {
+    "prefix": "set",
+    "scope": "json, jsonc",
+    "body": [
+      "{",
+      "\t\"\\$schema\": \"./cde_set_schema.json\",",
+      "\t\"id\": \"CDESTGS-$UUID\",",
+      "\t\"name\": \"$1\",",
+      "\t\"description\": \"$2\",",
+      "\t\"version\": {",
+      "\t\t\"status\": \"Proposed\",",
+      "\t\t\"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
+      "\t\t\"name\": \"$3\"",
+      "\t},",
+      "\t\"index_codes\": [],",
+      "\t\"body_parts\": [],",
+      "\t\"authors\": {",
+      "\t\t\"person\": [],",
+      "\t\t\"organization\": []",
+      "\t},",
+      "\t\"history\": [",
+      "\t\t{",
+      "\t\t\t\"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
+      "\t\t\t\"status\": \"Proposed\"",
+      "\t\t}",
+      "\t],",
+      "\t\"specialty\": [],",
+      "\t\"elements\": [$0],",
+      "\t\"references\": []",
+      "}"
+    ],
+    "description": "CDE Set"
+  },
+  "Integer Element": {
+    "prefix": "intel",
+    "scope": "json, jsonc",
+    "body": [
+      "{",
+      "\t\"id\": \"CDESTG-$UUID\",",
+      "\t\"name\": \"$1\",",
+      "\t\"definition\": \"$2\",",
+      "\t${3:\"question\": \"$4\",}",
+      "\t\"version\": {",
+      "\t\t\"name\": \"Start\",",
+      "\t\t\"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
+      "\t\t\"status\": \"Proposed\"",
+      "\t},",
+      "\t\"index_codes\": [],",
+      "\t\"integer_values\": {",
+      "\t\t\"min\": ${5:0},",
+      "\t\t\"max\": ${6:999},",
+      "\t\t\"step\": ${7:1},",
+      "\t\t\"unit\": \"${8:mm}\"",
+      "\t}",
+      "}$0"
+    ],
+    "description": "Integer Element"
+  },
+  "Float Element": {
+    "prefix": "floatel",
+    "scope": "json, jsonc",
+    "body": [
+      "{",
+      "\t\"id\": \"CDESTG-$UUID\",",
+      "\t\"name\": \"$1\",",
+      "\t\"definition\": \"$2\",",
+      "\t${3:\"question\": \"$4\",}",
+      "\t\"version\": {",
+      "\t\t\"name\": \"Start\",",
+      "\t\t\"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
+      "\t\t\"status\": \"Proposed\"",
+      "\t},",
+      "\t\"index_codes\": [],",
+      "\t\"float_values\": {",
+      "\t\t\"min\": ${5:0},",
+      "\t\t\"max\": ${6:999},",
+      "\t\t\"step\": ${7:0.1},",
+      "\t\t\"unit\": \"${8:mm}\"",
+      "\t}",
+      "}$0"
+    ],
+    "description": "Float Element"
+  },
+  "Value Set Element": {
+    "prefix": "valsetel",
+    "body": [
+      "{",
+      "\t\"id\": \"CDESTG-$UUID\",",
+      "\t\"name\": \"$1\",",
+      "\t\"definition\": \"$2\",",
+      "\t${3:\"question\": \"$4\",}",
+      "\t\"version\": {",
+      "\t\t\"name\": \"\",",
+      "\t\t\"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
+      "\t\t\"status\": \"Proposed\"",
+      "\t\t},",
+      "\t\"index_codes\": [],",
+      "\t\"value_set\": {",
+      "\t\t\"min_cardinality\": ${5:1},",
+      "\t\t\"max_cardinality\": ${6:1},",
+      "\t\t\"values\": [",
+      "\t\t\t$0",
+      "\t\t]",
+      "\t}",
+      "}"
+    ],
+    "description": "Value Set Element"
+  },
+  "Value Set Value": {
+    "prefix": "valsetval",
+    "body": [
+      "{",
+      "\t\"value\": \"CDESTG-00000000-0000-1000-8000-000000000000.${1:0}\",",
+      "\t\"name\": \"$2\",",
+      "\t\"index_codes\": []",
+      "}$0"
+    ],
+    "description": "Value Set Value"
+  },
+  "Boolean Element": {
+    "prefix": "boolel",
+    "scope": "json, jsonc",
+    "body": [
+      "{",
+      "\t\"id\": \"CDESTG-$UUID\",",
+      "\t\"name\": \"$1\",",
+      "\t\"definition\": \"$2\",",
+      "\t${3:\"question\": \"$4\",}",
+      "\t\"version\": {",
+      "\t\t\"name\": \"Start\",",
+      "\t\t\"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
+      "\t\t\"status\": \"Proposed\"",
+      "\t},",
+      "\t\"index_codes\": [],",
+      "\t\"boolean_values\": \"boolean\"",
+      "}$0"
+	],
+	"description": "Boolean Element"
+  },
+  "Presence Element": {
+    "prefix": "presel",
+    "body": [
+      "{",
+      "\t\"id\": \"CDESTG-${1:$UUID}\",",
+      "\t\"name\": \"${2:Presence}\",",
+      "\t\"definition\": \"$3\",",
+      "\t\"version\": {",
+      "\t\t\"name\": \"\",",
+      "\t\t\"date\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\",",
+      "\t\t\"status\": \"Proposed\"",
+      "\t\t},",
+      "\t\"index_codes\": [],",
+      "\t\"value_set\": {",
+      "\t\t\"min_cardinality\": 1,",
+      "\t\t\"max_cardinality\": 1,",
+      "\t\t\"values\": [",
+      "\t\t\t{",
+      "\t\t\t\t\"value\": \"CDESTG-$1.0\",",
+      "\t\t\t\t\"name\": \"${4:Present}\",",
+      "\t\t\t\t\"index_codes\": []",
+      "\t\t\t},",
+      "\t\t\t{",
+      "\t\t\t\t\"value\": \"CDESTG-$1.0\",",
+      "\t\t\t\t\"name\": \"${5:Absent}\",",
+      "\t\t\t\t\"index_codes\": []",
+      "\t\t\t},",
+      "\t\t\t{",
+      "\t\t\t\t\"value\": \"CDESTG-$1.0\",",
+      "\t\t\t\t\"name\": \"${6:Indeterminate}\",",
+      "\t\t\t\t\"index_codes\": []",
+      "\t\t\t},",
+      "\t\t\t{",
+      "\t\t\t\t\"value\": \"CDESTG-$1.0\",",
+      "\t\t\t\t\"name\": \"${7:Unknown}\",",
+      "\t\t\t\t\"index_codes\": []",
+      "\t\t\t}",
+      "\t\t]",
+      "\t}",
+      "}$0"
+    ],
+    "description": "Presence Element"
+  },
 }
