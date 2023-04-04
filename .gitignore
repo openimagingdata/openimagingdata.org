@@ -1,4 +1,28 @@
+# Web Site cruft
 _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+
+# Node.js dependencies
+**/node_modules/
+
+# Build output
+**/dist/
+
+# TypeScript cache
+**/.tsbuildinfo
+
+# Test output
+**/coverage/
+
+# IDE and editor files
+.idea/
+*.iml
+*.swp
+*.swo
+*.bak
+
+# OS generated files
+Thumbs.db
+.DS_Store

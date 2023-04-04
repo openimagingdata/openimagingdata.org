@@ -1,0 +1,14 @@
+{
+  "name": "@openraddata/openraddatamodel",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {},
+  "dependencies": {},
+  "keywords": [],
+  "author": "Open Radiology Data Model Project <info@openraddata.org>",
+  "pnpm": {
+    "workspaces": [
+      "packages/*"
+    ]
+  }
+}
