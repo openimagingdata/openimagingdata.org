@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Observation",
+  "definitions": {
+    "Observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "description": "Any property starting with $ is reserved for notations and extensions",
+          "tsType": "any"
+        }
+      },
+      "properties": {
+        "resourceType": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "code": {
+          "$ref": "#/definitions/SystemCode"
+        },
+        "bodySite": {
+          "$ref": "#/definitions/BodySite"
+        },
+        "component": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Component"
+          }
+        }
+      },
+      "required": ["resourceType", "id", "code", "component"],
+      "title": "Observation"
+    },
+    "BodySite": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/definitions/SystemCodeList"
+        }
+      },
+      "required": ["code"],
+      "title": "BodySite"
+    },
+    "SystemCodeList": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "coding": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SystemCode"
+          },
+          "minItems": 1
+        }
+      },
+      "required": ["coding"],
+      "title": "SystemCodeList"
+    },
+    "SystemCode": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "system": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": ["https"]
+        },
+        "code": {
+          "type": "string"
+        },
+        "display": {
+          "type": "string"
+        }
+      },
+      "required": ["system", "code"],
+      "title": "SystemCode"
+    },
+    "Component": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/definitions/SystemCodeList"
+        },
+        "valueCodeableConcept": {
+          "$ref": "#/definitions/SystemCodeList"
+        },
+        "valueString": {
+          "type": "string"
+        },
+        "valueInteger": {
+          "type": "integer"
+        },
+        "valueFloat": {
+          "type": "string",
+          "format": "float"
+        }
+      },
+      "required": ["code"],
+      "oneOf": [
+        {
+          "required": ["valueCodeableConcept"]
+        },
+        {
+          "required": ["valueString"]
+        },
+        {
+          "required": ["valueInteger"]
+        }
+      ],
+      "title": "Component"
+    }
+  }
+}

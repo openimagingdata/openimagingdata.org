@@ -1,0 +1,107 @@
+{
+  "$schema": "./observation_schema.json",
+  "resourceType": "Observation",
+  "id": "28d99870-ace5-46bd-8742-1d9a6d1796fc",
+  "code": {
+    "system": "https://radelement.org",
+    "code": "RDES47",
+    "display": "Stener Lesion"
+  },
+  "bodySite": {
+    "code": {
+      "coding": [
+        {
+          "system": "https://www.anatomiclocations.org/",
+          "code": "RID2035",
+          "display": "ulnar collateral ligament of elbow"
+        }
+      ]
+    }
+  },
+  "component": [
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE256",
+            "display": "Classification"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE256.2",
+            "display": "full-thickness tear"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE257",
+            "display": "Status"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE257.2",
+            "display": "abnormal"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE258",
+            "display": "Presence"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE258.1",
+            "display": "present"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE637",
+            "display": "femur length coordinates"
+          }
+        ]
+      },
+      "valueString": "42.595, 20.658, 59.874, 20.658"
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE714",
+            "display": "number of rib fractures"
+          }
+        ]
+      },
+      "valueInteger": 2
+    }
+  ]
+}
