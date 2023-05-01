@@ -1,0 +1,187 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+start =
+  element data_element_set {
+
+    ## Each set has a unique identifier of the format "RDES[0-9]+" (e.g., "RDES42") and a textual name.
+    element id { xsd:string { pattern='RDES\d+' } },
+    element name { text },
+    element description { text >> a:documentation ["plain text, or XHTML div are acceptable"]},
+    version,
+    references?,
+    index_codes?,
+    element images { image+ }?,
+    modality*,
+    biological_sex?,
+    age_range?,
+    authors?,
+    history+,
+    specialty+,
+    element elements { data_element+ }
+  }
+
+data_element =
+
+  ## Each data element has a unique identifier of the format "RDE[0-9]+" (e.g., "RDE54") and a textual name.
+  element element {
+    element id { xsd:string { pattern='RDE\d+' } },
+    element parent_set { xsd:string { pattern='RDES\d+' } },
+    element name { text },
+    element definition {
+       text >> a:documentation [ "Each CDE must have a definition." ]
+    },
+    version,
+    references?,
+    index_codes?,
+    element images { image+ }?,
+    modality*,
+    biological_sex?,
+    age_range?,
+    authors?,
+    history+,
+    specialty*,
+    (
+        element integer_values {
+            element min { xsd:integer }?,
+            element max { xsd:integer >> a:documentation ["Must be greater than the min attribute"] }?,
+            element step { xsd:integer >> a:documentation ["Default is 1"] }?,
+            element unit { xsd:Name }?
+        }
+        | element float_values {
+            element min { xsd:float }?,
+            element max { xsd:float >> a:documentation ["Must be greater than the min attribute"] }?,
+            element step { xsd:integer }?,
+            element unit { xsd:Name }?
+        }
+        | element boolean_values { xsd:boolean }
+        | element value_set {
+            element min_cardinality { xsd:nonNegativeInteger >> a:documentation ["defines the minimum number of values to select from the value set"] }?,
+            element max_cardinality { xsd:positiveInteger >> a:documentation ["defines the maximum number of values to select from the value set"] }?,
+            element value {
+                element value { xsd:Name },
+                element name { text },
+                element definition { text }?,
+                references?,
+                element images { image+ }?,
+                index_codes?
+            }+
+        }
+    )
+  }
+
+## Named Pattern Definitions
+
+age_range =
+    element age_range {
+        element upper_bound { xsd:float }?,
+        element lower_bound { xsd:float }?  >> a.documentation ["The range of applicable ages for the data element or set, specified in fractional years (e.g. 4 months = 0.33 years)"]
+    }
+
+## Each data element or set can have 0 or more individual and/or organizational authors
+authors =
+    element authors {
+        person*, org*
+        }
+
+biological_sex =
+    element biological_sex { "M" | "F" }
+
+person =
+  element person {
+    element name { text },
+    (element orcid_id { text }?
+     & element twitter_handle { text }*
+     & element url { text }*
+     & element role {
+         "author" | "editor" | "translator" | "reviewer" | "contributor"
+       }*)
+  }
+org =
+  element organization {
+    element name { text }
+    & element abbreviation { text }?
+    & element url { xsd:anyURI }?
+    & element comment { text }?
+    & element role {
+        "contributor" | "sponsor" | "translator" | "reviewer" | "author"
+      }*
+  }
+index_codes =
+  element index_codes {
+    element index_code {
+      element system { "RADLEX" | "SNOMEDCT" | "LOINC" },
+      element code { xsd:normalizedString },
+      element url { xsd:anyURI }?,
+      element display { text }?
+    }+
+  }
+
+image =
+  element image {
+    element url { xsd:anyURI }
+    & element height { xsd:positiveInteger }?
+    & element width { xsd:positiveInteger }?
+    & element caption { text }?
+    & element rights { text }?
+    & authors?
+    & references?
+  }
+
+modality =
+    element modality {
+        element system { "RadLex" },
+        ( element code {"CT"},
+           element name { "Computed Tomography"},
+           element url { "http://radlex.org/RID/RID10321" } ) ?,
+        ( element code { "FL" },
+          element name { "Fluoroscopy" },
+          element url { "http://radlex.org/RID/RID10361" } ) ?,
+        ( element code { "MR" },
+          element name { "Magnetic Resonance Imaging" },
+          element url { "http://radlex.org/RID/RID10312" } ) ?,
+        ( element code { "NM" },
+          element name { "Nuclear Medicine" },
+          element url { "http://radlex.org/RID/RID10330" } ) ?,
+        ( element code { "PET" },
+          element name { "Positron Emission Tomography" },
+          element url { "http://radlex.org/RID/RID10337" } ) ?,
+        ( element code { "US" },
+          element name { "Ultrasound" },
+          element url { "http://radlex.org/RID/RID10326" } ) ?,
+        ( element code { "XR" },
+          element name { "Projection Radiography" },
+          element url { "http://radlex.org/RID/RID10345" } ) ?
+     }
+
+references =
+    element references {
+        element reference {
+            element citation { text } >> a.documentation ["Required - Provide a bibliographic citation, including all the author names (no et Al)"],
+            element doi_url { xsd:anyURI }?,
+            element pubmed_id { xsd:integer }?,
+            element url { xsd:anyURI }?
+        }+
+    }
+
+status_attrs =
+    element date { xsd:date },
+    element status {
+      "proposed" | "published" | "retired"
+    }
+
+specialty =
+    element specialty {
+        element name { text },
+        element abbreviation { "AB" | "BR" | "CA" | "CH" | "ER" | "GI" | "GU" | "HN" | "IR" | "MI" | "MK" | "NR" | "OB" | "OI" | "OT" | "PD" | "QI" | "RS" | "VI" }
+    }
+
+history =
+  element event {
+    status_attrs
+  }*
+
+version =
+    element version {
+        element name {text},
+        status_attrs
+    }

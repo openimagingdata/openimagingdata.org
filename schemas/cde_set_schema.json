@@ -1,31 +1,21 @@
 {
-    "$schema": "http://json-schema.org/draft-06/schema#",
-    "$ref": "#/definitions/Wrapper",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$ref": "#/definitions/DataElementSet",
+    "$id": "https://openraddata.org/schemas/cde_set_schema.json",
     "definitions": {
-        "Wrapper": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "$schema": {
-                    "type": "string"
-                },
-                "data_element_set": {
-                    "$ref": "#/definitions/DataElementSet"
-                }
-            },
-            "required": [
-                "$schema",
-                "data_element_set"
-            ],
-            "title": "Wrapper"
-        },
         "DataElementSet": {
             "type": "object",
             "additionalProperties": false,
+            "patternProperties": {
+                "^\\$": {
+                    "description": "Any property starting with $ is reserved for notations and extensions",
+                    "tsType": "any"
+                }
+            },
             "properties": {
                 "id": {
                     "type": "string",
-                    "pattern": "^RDES\\d+"
+                    "pattern": "^(RDES\\d+|CDESTGS-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})$"
                 },
                 "name": {
                     "type": "string"
@@ -37,43 +27,153 @@
                 "version": {
                     "$ref": "#/definitions/Version"
                 },
-                "references": {
-                    "$ref": "#/definitions/References"
+                "url": {
+                    "type": "string",
+                    "format": "uri"
                 },
                 "index_codes": {
-                    "$ref": "#/definitions/IndexCodes"
-                },
-                "images": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Image"
+                        "$ref": "#/definitions/IndexCode"
                     }
                 },
-                "modality": {
-                    "$ref": "#/definitions/Modality"
-                },
-                "biologicalSex": {
-                    "$ref": "#/definitions/BiologicalSex"
+                "body_parts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BodyPart"
+                    }
                 },
                 "authors": {
                     "$ref": "#/definitions/Authors"
                 },
+                "history": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    }
+                },
                 "specialty": {
-                    "$ref": "#/definitions/Specialty"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Specialty"
+                    }
                 },
                 "elements": {
-                    "$ref": "#/definitions/Elements"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Element"
+                    }
+                },
+                "references": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    }
                 }
             },
-            "required": [
-                "id",
-                "name",
-                "description",
-                "version",
-                "elements",
-                "specialty"
-            ],
+            "required": ["id", "name", "description", "version", "elements", "history", "index_codes", "specialty"],
             "title": "DataElementSet"
+        },
+        "Element": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Each data element has a unique identifier of the format \"RDE[0-9]+\" (e.g., \"RDE54\") and a textual name.",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "pattern": "^(RDE\\d+|CDESTG-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})$"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "definition": {
+                    "description": "Each CDE must have a definition.",
+                    "type": "string"
+                },
+                "question": {
+                    "description": "How a user might be prompted to provide a value",
+                    "type": "string"
+                },
+                "version": {
+                    "$ref": "#/definitions/Version"
+                },
+                "index_codes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IndexCode"
+                    }
+                },
+                "authors": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Authors"
+                        },
+                        {
+                            "type": "array",
+                            "const": []
+                        }
+                    ]
+                },
+                "history": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    }
+                },
+                "specialty": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Specialty"
+                    }
+                },
+                "references": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    }
+                },
+                "integer_values": {
+                    "$ref": "#/definitions/IntegerValues"
+                },
+                "value_set": {
+                    "$ref": "#/definitions/ValueSet"
+                },
+                "float_values": {
+                    "$ref": "#/definitions/FloatValues"
+                },
+                "boolean_values": {
+                    "$ref": "#/definitions/BooleanValues"
+                }
+            },
+            "required": ["id", "name", "version"],
+            "oneOf": [
+                {
+                    "required": ["integer_values"]
+                },
+                {
+                    "required": ["value_set"]
+                },
+                {
+                    "required": ["float_values"]
+                },
+                {
+                    "required": ["boolean_values"]
+                }
+            ],
+            "title": "Element"
+        },
+        "Event": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "status": {
+                    "$ref": "#/definitions/Status"
+                }
+            }
         },
         "Image": {
             "type": "object",
@@ -101,14 +201,14 @@
                     "$ref": "#/definitions/Authors"
                 },
                 "references": {
-                    "$ref": "#/definitions/References"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    }
                 }
             },
-            "required": [
-                "url"
-            ],
+            "required": ["url"],
             "title": "Image"
-        },
         },
         "BiologicalSex": {
             "type": "string",
@@ -131,18 +231,6 @@
                     }
                 }
             },
-            "oneOf": [
-                {
-                    "required": [
-                        "person"
-                    ]
-                },
-                {
-                    "required": [
-                        "organization"
-                    ]
-                }
-            ],
             "title": "Authors"
         },
         "Person": {
@@ -153,84 +241,35 @@
                     "type": "string"
                 },
                 "orcid_id": {
-                    "type": "string"
+                    "type": ["string", "null"]
                 },
                 "twitter_handle": {
-                    "type": "string"
+                    "type": ["string", "null"]
                 },
                 "url": {
-                    "type": "string",
+                    "type": ["string", "null"],
                     "format": "uri"
                 },
                 "role": {
-                    "type": "string",
-                    "enum": ["author", "editor", "translator", "reviewer", "contributor"]
+                    "type": ["string", "null"],
+                    "enum": ["author", "editor", "translator", "reviewer", "contributor", null]
                 }
             },
-            "required": [
-                "name"
-            ],
+            "required": ["name"],
             "title": "Person"
         },
-        "Elements": {
+        "BodyPart": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-                "element": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Element"
-                    }
-                }
-            },
-            "required": [
-                "element"
-            ],
-            "title": "Elements"
-        },
-        "Element": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "parent_set": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 },
-                "definition": {
-                    "type": "string"
-                },
-                "version": {
-                    "$ref": "#/definitions/Version"
-                },
                 "index_codes": {
-                    "$ref": "#/definitions/IndexCodes"
-                },
-                "specialty": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Organization"
-                    }
-                },
-                "integer_values": {
-                    "$ref": "#/definitions/IntegerValues"
-                },
-                "value_set": {
-                    "$ref": "#/definitions/ValueSet"
+                    "$ref": "#/definitions/IndexCode"
                 }
             },
-            "required": [
-                "definition",
-                "id",
-                "name",
-                "parent_set",
-                "version"
-            ],
-            "title": "Element"
+            "required": ["name"]
         },
         "IndexCode": {
             "type": "object",
@@ -243,7 +282,7 @@
                 "code": {
                     "type": "string"
                 },
-                "url": {
+                "href": {
                     "type": "string",
                     "format": "uri"
                 },
@@ -252,46 +291,52 @@
                 }
             }
         },
-        "IndexCodes": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "index_code": {
-                    "$ref": "#/definitions/IndexCode"
-                }
-            },
-            "required": [
-                "index_code"
-            ],
-            "title": "IndexCodes"
-        },
         "IntegerValues": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
                 "min": {
-                    "type": "string",
-                    "format": "integer"
+                    "description": "Value must be greater than or equal to minimum.",
+                    "type": "integer"
                 },
                 "max": {
-                    "type": "string",
-                    "format": "integer"
+                    "description": "Value must be less than or equal to the maximum.",
+                    "type": "integer"
                 },
                 "step": {
-                    "type": "string",
-                    "format": "integer"
+                    "default": 1,
+                    "type": "integer"
                 },
                 "unit": {
                     "type": "string"
                 }
             },
-            "required": [
-                "max",
-                "min",
-                "step",
-                "unit"
-            ],
             "title": "IntegerValues"
+        },
+        "FloatValues": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "min": {
+                    "description": "Value must be greater than or equal to minimum.",
+                    "type": "number"
+                },
+                "max": {
+                    "description": "Value must be less than or equal to the maximum.",
+                    "type": "number"
+                },
+                "step": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            },
+            "title": "Float Values"
+        },
+        "BooleanValues": {
+            "type": "string",
+            "const": "boolean"
         },
         "Organization": {
             "type": "object",
@@ -315,9 +360,7 @@
                     "enum": ["author", "sponsor", "translator", "reviewer", "contributor"]
                 }
             },
-            "required": [
-                "name"
-            ],
+            "required": ["name"],
             "title": "Organization"
         },
         "ValueSet": {
@@ -325,25 +368,22 @@
             "additionalProperties": false,
             "properties": {
                 "min_cardinality": {
-                    "type": "string",
-                    "format": "integer"
+                    "description": "defines the minimum number of values to select from the value set",
+                    "type": "integer"
                 },
                 "max_cardinality": {
-                    "type": "string",
-                    "format": "integer"
+                    "description": "defines the maximum number of values to select from the value set",
+                    "type": "integer"
                 },
-                "value": {
+                "values": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Value"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
-            "required": [
-                "max_cardinality",
-                "min_cardinality",
-                "value"
-            ],
+            "required": ["values"],
             "title": "ValueSet"
         },
         "Value": {
@@ -351,73 +391,30 @@
             "additionalProperties": false,
             "properties": {
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^(RDE\\d+|CDESTG-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})\\.\\d+$"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "definition": {
                     "type": "string"
                 },
                 "index_codes": {
-                    "$ref": "#/definitions/ValueIndexCodes"
-                }
-            },
-            "required": [
-                "index_codes",
-                "name",
-                "value"
-            ],
-            "title": "Value"
-        },
-        "ValueIndexCodes": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "index_code": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Modality"
+                        "$ref": "#/definitions/IndexCode"
+                    }
+                },
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Image"
                     }
                 }
             },
-            "required": [
-                "index_code"
-            ],
-            "title": "ValueIndexCodes"
-        },
-        "Modality": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "system": {
-                    "type": "string",
-                    "enum": ["RADLEX"]
-                },
-                "code": {
-                    "type": "string",
-                    "enum": ["CT", "FL", "MR", "NM", "PET", "US", "XR"]
-                },
-                "url": {
-                    "type": "string",
-                    "format": "uri",
-                    "pattern": "^http://radlex.org/RID/RID103(21|61|12|30|37|26|45)$"
-                },
-                "name": {
-                    "type": "string",
-                    "enum": ["Computed Tomography", 
-                        "Fluoroscopy", 
-                        "Magnetic Resonance Imaging", 
-                        "Nuclear Medicine", 
-                        "Positron Emission Tomography", 
-                        "Ultrasound", 
-                        "Projection Radiography"]
-                }
-            },
-            "required": [
-                "code",
-                "system",
-                "url",
-                "name"
-            ],
-            "title": "Modality"
+            "required": ["name", "value"],
+            "title": "Value"
         },
         "Specialty": {
             "type": "object",
@@ -428,13 +425,10 @@
                 },
                 "abbreviation": {
                     "type": "string",
-                    "enum": ["AB", "BR", "CA", "CH", "ER", "GI", "GU", "HN", "IR", "MI", "MK", "NR", "OB", "OI", "OT", "PD", "QI", "RS", "VI"]
+                    "enum": ["BR", "BQ", "CA", "CH", "ER", "GI", "GU", "HN", "IR", "MI", "MK", "NR", "OB", "OI", "OT", "PD", "QI", "RS", "VA", "CT", "MR", "NM", "US", "AI", "ED", "HP", "IN", "LM", "PH", "PR", "RO", "SQ"]
                 }
             },
-            "required": [
-                "name", 
-                "abbreviation"
-            ],
+            "required": ["name", "abbreviation"],
             "title": "Specialty"
         },
         "Version": {
@@ -449,38 +443,22 @@
                     "format": "date"
                 },
                 "status": {
-                    "type": "string",
-                    "enum": ["proposed", "published", "retired"]
+                    "$ref": "#/definitions/Status"
                 }
             },
-            "required": [
-                "date",
-                "name",
-                "status"
-            ],
+            "required": ["date", "name", "status"],
             "title": "Version"
         },
-        "References": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "reference": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Reference"
-                    }
-                }
-            },
-            "required": [
-                "reference"
-            ],
-            "title": "References"
+        "Status": {
+            "type": "string",
+            "enum": ["Proposed", "Published", "Retired"]
         },
         "Reference": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
                 "citation": {
+                    "description": "Required - Provide a bibliographic citation, including all the author names (no et Al)",
                     "type": "string"
                 },
                 "doi_url": {
@@ -496,9 +474,7 @@
                     "format": "uri"
                 }
             },
-            "required": [
-                "citation"
-            ],
+            "required": ["citation"],
             "title": "Reference"
         }
     }

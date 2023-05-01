@@ -1,31 +1,215 @@
 {
     "$schema": "./cde_set_schema.json",
-    "data_element_set": {
-        "id": "",
-        "name": "Liver Lesion",
-        "description": "Incidental liver lesion",
-        "version": {
-            "date": "2020-01-01",
-            "name": "1.0.0",
-            "status": "proposed"
-        },
-        "authors": {
-            "person": [
-                {
-                    "name": "John Doe",
-                    "orcid": "0000-0000-0000-0000",
-                    "affiliation": "University of California, San Francisco"
-                }
-            ]
-        },
-        "specialty": {
-            "name": "Abdominal Radiology",
-            "abbreviation": "AB"
-        },
-        "elements": {
-            "element": [
-
-            ]
+    "id": "RDES3",
+    "name": "CAR/DS Adrenal Nodule",
+    "description": "ACR Assist project for describing adrenal nodules.",
+    "version": {
+        "status": "Proposed",
+        "date": "2023-03-07",
+        "name": "TestVersion"
+    },
+    "url": "https://openraddata.org/schemas/sample_cde_set.json",
+    "index_codes": [
+        {
+            "system": "RADLEX",
+            "code": "RADLEX:1001",
+            "display": "Distal Radius Fracture",
+            "href": "https://radlex.org/RID/1001"
         }
-    }
+    ],
+    "body_parts": [
+        {
+            "name": "Adrenal Gland",
+            "index_codes": {
+                "system": "RADLEX",
+                "code": "RID88",
+                "display": "Adrenal Gland",
+                "href": "http://www.radlex.org/RID/RID88"
+            }
+        }
+    ],
+    "authors": {
+        "person": [
+            {
+                "name": "Tarik Alkasab",
+                "role": "author"
+            },
+            {
+                "name": "Marc Kohli",
+                "orcid_id": "0000-0003-3720-0156"
+            }
+        ],
+        "organization": [
+            {
+                "name": "American College of Radiology",
+                "abbreviation": "ACR"
+            }
+        ]
+    },
+    "history": [
+        {
+            "date": "2023-03-07",
+            "status": "Proposed"
+        }
+    ],
+    "specialty": [
+        {
+            "name": "Genitourinary Radiology",
+            "abbreviation": "GU"
+        }
+    ],
+    "elements": [
+        {
+            "id": "RDE41",
+            "name": "Nodule size",
+            "definition": "The greatest linear dimension of the adrenal nodule.",
+            "version": {
+                "name": "1",
+                "date": "2015-07-05",
+                "status": "Proposed"
+            },
+            "index_codes": [
+                {
+                    "system": "SNOMEDCT",
+                    "code": "246120007",
+                    "href": "http://snomed.info/sct",
+                    "display": "nodule size"
+                }
+            ],
+            "specialty": [
+                {
+                    "name": "Genitourinary Radiology",
+                    "abbreviation": "GU"
+                }
+            ],
+            "integer_values": {
+                "min": 0,
+                "max": 999,
+                "step": 1,
+                "unit": "mm"
+            }
+        },
+        {
+            "id": "RDE42",
+            "name": "Side",
+            "definition": "The side of the body (right or left)",
+            "version": {
+                "name": "1",
+                "date": "2015-07-05",
+                "status": "Proposed"
+            },
+            "value_set": {
+                "min_cardinality": 1,
+                "max_cardinality": 1,
+                "values": [
+                    {
+                        "value": "RDE42.0",
+                        "name": "Right",
+                        "index_codes": [
+                            {
+                                "system": "RADLEX",
+                                "code": "RID5828",
+                                "href": "http://radlex.org/",
+                                "display": "Right"
+                            },
+                            {
+                                "system": "SNOMEDCT",
+                                "code": "24028007",
+                                "href": "http://snomed.info/sct",
+                                "display": "Right"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "RDE42.1",
+                        "name": "Left",
+                        "index_codes": [
+                            {
+                                "system": "RADLEX",
+                                "code": "RID5824",
+                                "href": "http://radlex.org/",
+                                "display": "Left"
+                            },
+                            {
+                                "system": "SNOMEDCT",
+                                "code": "7771000",
+                                "href": "http://snomed.info/sct",
+                                "display": "Left"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "RDE43",
+            "name": "Unenhanced attenuation",
+            "definition": "Mean attenuation in Hounsfield units (HU) of the region of interest on CT images obtained without IV contrast.",
+            "question": "Enter the attenuation of the region of interest on the unenhnaced CT.",
+            "version": {
+                "name": "1",
+                "date": "2015-07-05",
+                "status": "Published"
+            },
+            "index_codes": [
+                {
+                    "system": "RADLEX",
+                    "code": "RID28662",
+                    "display": "Attenuation",
+                    "href": "http://www.radlex.org/RID/RID28662"
+                },
+                {
+                    "system": "RADLEX",
+                    "code": "RID11086",
+                    "display": "Unenhanced phase",
+                    "href": "http://www.radlex.org/RID/RID11086"
+                }
+            ],
+            "authors": {
+                "person": [],
+                "organization": []
+            },
+            "history": [],
+            "specialty": [],
+            "references": [],
+            "integer_values": {
+                "min": -1024,
+                "max": 1024,
+                "step": 1,
+                "unit": "HU"
+            }
+        },
+        {
+            "id": "RDE48",
+            "name": "Macroscopic fat",
+            "definition": "The adrenal nodule contains macroscopic fat, as evidenced by at least one pixel attenuation value less than -10 HU. ",
+            "question": "Does the nodule contain microscopic fat?",
+            "version": {
+                "name": "1",
+                "date": "2015-07-05",
+                "status": "Published"
+            },
+            "index_codes": [],
+            "authors": {
+                "person": [],
+                "organization": []
+            },
+            "history": [],
+            "specialty": [],
+            "references": [],
+            "boolean_values": "boolean"
+        }
+    ],
+    "references": [
+        {
+            "citation": "Sangwaiya MJ, Boland GW, Cronin CG et-al. Incidental adrenal lesions: accuracy of\n        characterization with contrast-enhanced washout multidetector CT-10-minute delayed imaging\n        protocol revisited in a large patient cohort. Radiology. 2010;256 (2): 504-10.",
+            "doi_url": "http://dx.doi.org/10.1148/radiol.10091386",
+            "pubmed_id": "20656838"
+        },
+        {
+            "citation": "Blake MA, Cronin CG, Boland GW. Adrenal imaging. AJR Am J Roentgenol. 2010;194 (6):\n        1450-60.",
+            "doi_url": "http://dx.doi.org/10.2214/AJR.10.4547",
+            "pubmed_id": "20489083"
+        }
+    ]
 }

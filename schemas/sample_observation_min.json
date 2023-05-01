@@ -1,0 +1,87 @@
+{
+  "$schema": "./observation_schema.json",
+  "resourceType": "Observation",
+  "id": "bdfa505a-3a82-4bdd-b987-e7f75af9f438",
+  "code": {
+    "system": "https://radelement.org",
+    "code": "RDES47"
+  },
+  "component": [
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE256"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE256.2"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE257"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE257.2"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE258"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://radelement.org",
+            "code": "RDE258.1"
+          }
+        ]
+      }
+    },
+    {
+        "code": {
+          "coding": [
+            {
+              "system": "https://radelement.org",
+              "code": "RDE637"
+            }
+          ]
+        },
+        "valueString": "42.595, 20.658, 59.874, 20.658"
+      },
+      {
+        "code": {
+          "coding": [
+            {
+              "system": "https://radelement.org",
+              "code": "RDE714"
+            }
+          ]
+        },
+        "valueInteger": 2
+      }
+    ]
+}
